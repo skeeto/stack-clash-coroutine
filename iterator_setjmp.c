@@ -8,7 +8,7 @@ struct tree_it {
     char *k;
     char *v;
     char *stack;
-    volatile char *gap;
+    char *gap;
     jmp_buf coroutine;
     jmp_buf yield;
 };
@@ -41,7 +41,7 @@ tree_iterator(struct tree *t)
     struct tree_it *it = malloc(sizeof(*it));
     it->stack = malloc(STACK_SIZE);
     char marker;
-    volatile char gap[&marker - it->stack - STACK_SIZE];
+    char gap[&marker - it->stack - STACK_SIZE];
     it->gap = gap; // prevent optimization
     if (!setjmp(it->yield))
         coroutine_init(t, it);
