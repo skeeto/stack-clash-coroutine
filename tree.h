@@ -9,7 +9,7 @@ struct tree {
 };
 
 void  tree_insert(struct tree **, char *k, char *v);
-char *tree_find(struct tree *, char *key);
+char *tree_find(struct tree *, char *k);
 void  tree_visit(struct tree *, void (*f)(char *, char *));
 void  tree_destroy(struct tree *);
 
